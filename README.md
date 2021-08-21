@@ -1,1 +1,1 @@
-# goit-wallet-be
+Wallet-app-backend
