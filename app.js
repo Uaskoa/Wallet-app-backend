@@ -1,6 +1,9 @@
 const express = require('express')
 const cors = require('cors')
 const mongoose = require('mongoose')
+const morgan = require('morgan')
+const swagger = require('./swagger')
+
 require('dotenv').config()
 require('./configs/passport-config')
 const { DB_HOST, PORT = 3000 } = process.env
@@ -13,6 +16,8 @@ const {
 const app = express()
 app.use(cors())
 app.use(express.json())
+app.use(morgan('dev'))
+swagger(app)
 
 app.use('/api/transactions', walletRouter)
 app.use('/api/users', authRouter)
