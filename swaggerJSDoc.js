@@ -14,7 +14,7 @@ const options = {
   definition: {
     servers: [
       {
-        url: 'http://localhost:3000',
+        url: 'http://localhost:3001',
         description: 'Development server'
       },
       {
@@ -22,8 +22,8 @@ const options = {
         description: 'Production server'
       }
     ]
-
-  }
+  },
+  apis: ['/api/index.js'],
 }
 
 const specs = swaggerJSDoc(options);

@@ -7,7 +7,7 @@ const swaggerUi = require('swagger-ui-express')
 
 require('dotenv').config()
 require('./configs/passport-config')
-const { DB_HOST, PORT = 3000 } = process.env
+const { DB_HOST, PORT = 3001 } = process.env
 
 const {
   authRouter,
