@@ -19,7 +19,7 @@ const options = {
 
 
  components:
-        /api/auth/login : 
+        /api/auth/login: 
     post:
     teg: 'Public Routers'
     requestBody:
