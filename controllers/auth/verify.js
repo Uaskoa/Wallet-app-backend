@@ -1,6 +1,5 @@
 const { user: service } = require('../../services')
 
-
 const verify = async (req, res, next) => {
   const { verifyToken } = req.params
   try {
@@ -12,7 +11,7 @@ const verify = async (req, res, next) => {
         message: 'Your verification token is not valid',
       })
     }
-    await service.updateById(user._id, { verify: true, verifyToken: '', })
+    await service.updateById(result._id, { verify: true, verifyToken: '', })
 
     res.status(200).json({
       status: 'success',

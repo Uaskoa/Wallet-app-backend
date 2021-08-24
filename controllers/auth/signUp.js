@@ -1,7 +1,7 @@
 const { user: service } = require('../../services')
 const { nanoid } = require('nanoid')
 const verifyToken = nanoid()
-const register = async (req, res, next) => {
+const signUp = async (req, res, next) => {
   const { email, password } = req.body
   try {
     const result = await service.getOne({ email })
@@ -9,7 +9,7 @@ const register = async (req, res, next) => {
       res.status(409).json({
         status: 'error',
         code: 409,
-        message: 'already register'
+        message: 'already signUp'
       })
       return
     }
@@ -30,4 +30,4 @@ const register = async (req, res, next) => {
   }
 }
 
-module.exports = register
+module.exports = signUp
