@@ -1,4 +1,4 @@
-const Joi = require('@hapi/joi');
+/* const Joi = require('joi');
 const { isMongoId } = require('validator');
 const Transaction = require('../models')
 
@@ -10,7 +10,7 @@ const objectId = joi => ({
       name: 'objectId',
       validate(_, value, state, options) {
         if (!isMongoId(value)) {
-          return this.createError('string.objectId', { value }, state, options)
+          return this.createError('string.objectId', { value }, state, options);
         }
         return value;
       }
@@ -19,7 +19,7 @@ const objectId = joi => ({
 })
 const joi = Joi.extend(objectId)
 
-const vaidateAuth = {
+const validateAuth = {
   '/auth/login': {
     POST: joi.objectId({
       email: joi.string()
@@ -39,8 +39,8 @@ const vaidateAuth = {
   }
 }
 
-const vaidateTransactions = {
-  '/wallet/transactions': {
+const validateTransactions = {
+  '/wallet': {
     POST: joi.objectId({
       id: joi.string().required(),
       data: joi.string().required(),
@@ -55,4 +55,4 @@ const vaidateTransactions = {
 
 }
 
-module.exports = { vaidateAuth, vaidateTransactions }
+module.exports = { validateAuth, validateTransactions } */

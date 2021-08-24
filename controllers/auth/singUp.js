@@ -1,5 +1,5 @@
 const { user: service } = require('../../services')
-const nanoid = require('nanoid')
+const { nanoid } = require('nanoid')
 const verifyToken = nanoid()
 const register = async (req, res, next) => {
   const { email, password } = req.body

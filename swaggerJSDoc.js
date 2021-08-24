@@ -1,5 +1,6 @@
 
 const swaggerJSDoc = require('swagger-jsdoc')
+const swaggerUI = require('swagger-ui-express')
 
 const swaggerDefinition = {
   openapi: '3.0.3',
@@ -27,8 +28,11 @@ const options = {
 }
 
 const specs = swaggerJSDoc(options);
+const swaggerDoc = app => {
+  app.use('/doc', swaggerUI.serve, swaggerUI.setup(specs))
+}
 
-module.exports = specs
+module.exports = swaggerDoc
 
 // routes\api\auth
 

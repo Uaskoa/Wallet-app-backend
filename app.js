@@ -2,8 +2,7 @@ const express = require('express')
 const cors = require('cors')
 const mongoose = require('mongoose')
 const morgan = require('morgan')
-const specs = require('./swaggerJSDoc')
-const swaggerUi = require('swagger-ui-express')
+const swaggerDoc = require('./swaggerJSDoc')
 
 require('dotenv').config()
 require('./configs/passport-config')
@@ -19,11 +18,11 @@ const app = express()
 app.use(cors())
 app.use(express.json())
 app.use(morgan('dev'))
-specs(app)
+swaggerDoc(app)
 
+app.use(express.static('public'))
 app.use('/api/transactions', walletRouter)
 app.use('/api/users', authRouter)
-app.use('/docs', swaggerUi.serve, swaggerUi.setup(specs))
 
 app.use((req, res) => {
   res.status(404).json({

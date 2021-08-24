@@ -8,10 +8,10 @@ const validateUser = newUser => {
   const { error } = schema.validate(newUser)
   return error
 }
-const validateUserByEmail = user => {
+/* const validateUserByEmail = user => {
   const schema = Joi.object({ email: Joi.string().required() })
   const { error } = schema.validate(user)
   return error
-}
+} */
 
-module.exports = { validateUser, validateUserByEmail }
+module.exports = { validateUser }
