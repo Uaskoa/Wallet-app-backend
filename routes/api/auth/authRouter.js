@@ -10,11 +10,11 @@ const {
 // const { vaidateAuth } = require('../../../services')
 
 
-// validate(validateUser),
+
 authRouter.post('/signup', ctrl.signUp)
 authRouter.post('/login', ctrl.login)
-authRouter.get('/logout',  ctrl.logout)
+authRouter.post('/logout', authenticate, ctrl.logout)
 authRouter.get('/current', authenticate, ctrl.getProfile)
-authRouter.get('/verify/:verifyToken', ctrl.verify)
+// authRouter.get('/verify/:verifyToken', ctrl.verify)
 
 module.exports = authRouter

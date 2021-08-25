@@ -21,11 +21,15 @@ const CATEGORIES = {
 }
 
 const transactionSchema = new Schema({
-  id: {
+  // id: {
+  //   type: String,
+  //   required: true,
+  // },
+  type: {
     type: String,
     required: true,
   },
-  data: {
+  date: {
     type: Date,
     required: true,
   },
@@ -53,13 +57,13 @@ const transactionSchema = new Schema({
 },
 )
 transactionSchema.virtual('wallet', {
-  ref: 'Wallet',
+  ref: 'wallet',
   localField: '_id',
   foreignField: 'transactions',
   justOne: true,
 })
 transactionSchema.virtual('wallet', {
-  ref: 'Wallet',
+  ref: 'wallet',
   localField: 'id',
   foreignField: 'transactions',
   justOne: true,

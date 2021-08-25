@@ -7,7 +7,7 @@ const login = async (req, res, next) => {
   const { email, password } = req.body
   try {
     const user = await service.getOne({ email })
-    if (!user || !user.comparePassword(password) || !user.varify) {
+    if (!user || !user.comparePassword(password)) {
       return res.status(400).json({
         status: 'error',
         code: 400,

@@ -1,5 +1,6 @@
 const { Transaction, Wallet, User } = require('../../models')
 
+
 const { COST, INCOME } = Transaction.TYPES
 const {
   MAIN_EXPENSES,
@@ -29,9 +30,9 @@ const ALLOWED_CATEGORIES = {
   ],
 }
 const createTransaction = async (req, res, next) => {
-  const { date, type, category, comments, amount, id } = req.body
-  const userId = req.userId._id
-
+  const { date, type, category, comments, amount } = req.body
+  const userId = req._id
+  console.log(userId);
   try {
     const amountNumber = +amount
     const user = await User.findById(userId)
