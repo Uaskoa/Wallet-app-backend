@@ -22,7 +22,7 @@ app.use(express.json())
 swaggerDoc(app)
 
 // app.use(express.static('public'))
-app.use('/api/transactions', walletRouter)
+app.use('/api/', walletRouter)
 app.use('/api/auth', authRouter)
 
 

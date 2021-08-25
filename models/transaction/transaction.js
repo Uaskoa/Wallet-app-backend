@@ -3,8 +3,8 @@ const mongoose = require('mongoose')
 const { Schema } = mongoose
 
 const TYPES = {
-  INCOME: '+',
-  COST: '-',
+  INCOME: true,
+  COST: false,
 }
 
 const CATEGORIES = {
@@ -26,7 +26,7 @@ const transactionSchema = new Schema({
   //   required: true,
   // },
   type: {
-    type: String,
+    type: Boolean,
     required: true,
   },
   date: {
@@ -48,7 +48,7 @@ const transactionSchema = new Schema({
   },
   balanceAfter: {
     type: Number,
-    required: true,
+    // required: true,
   },
 },
 {
