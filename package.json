@@ -4,7 +4,7 @@
   "private": true,
   "scripts": {
     "start": "node app",
-    "start:dev": "nodemon app",
+    "start:dev": "cross-env NODE_ENV=development nodemon ./app.js",
     "lint": "eslint **/*.js",
     "lint:fix": "eslint --fix **/*.js"
   },

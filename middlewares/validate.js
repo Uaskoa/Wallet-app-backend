@@ -1,11 +1,13 @@
-const validate = (validator) => {
+const validator= require('./utils')
+
+const validate = ( ) => {
   return (req, res, next) => {
-    const error = validator(req.body)
+    const error = validator.validate(req.body )
     if (error) {
       res.status(400).json({
         status: 'error',
         code: 400,
-        message: 'error',
+        message: 'Ошибка от Joi или другой библиотеки валидации',
       })
       return
     }

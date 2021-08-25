@@ -1,11 +1,11 @@
 
-const User = require('../models')
+const User = require('../models/user/user')
 
 const getOne = (filter) => {
   return User.findOne(filter)
 }
-const add = ({ email, password, verifyToken }) => {
-  const newUser = new User({ email, verifyToken })
+const add = ({ email, password, name, verifyToken }) => {
+  const newUser = new User({ email, name, verifyToken })
   newUser.setPassword(password)
   return newUser.save()
 }
