@@ -19,12 +19,57 @@ const CATEGORIES = {
   RECREATION: 'recreation',
   OTHER_EXPENSES: 'other expanses'
 }
+// const transactionSchema = new Schema(
+//   {
+//     userId: {
+//       type: Schema.Types.ObjectId,
+//       ref: 'User',
+//       required: true,
+//     },
+//     type: {
+//       type: String,
+//       default: 'income',
+//       required: true,
+//     },
+//     transactionDate: {
+//       type: Date,
+//       required: true,
+//     },
+//     amount: {
+//       type: Number,
+//       default: 0,
+//       required: true,
+//     },
+//     category: {
+//       type: String,
+//       default: 'income',
+//       required: true,
+//     },
+//     comment: String,
+//     balanceAfter: {
+//       type: Number,
+//       required: true,
+//     },
+//     balanceAfterSign: {
+//       type: String,
+//       required: true,
+//     },
+//   },
+//   {
+//     timestamps: true,
+//   },
+// );
 
 const transactionSchema = new Schema({
-  // id: {
-  //   type: String,
-  //   required: true,
-  // },
+  userId: {
+    type: String,
+    // required: true,
+  },
+  createdBy: {
+      type: mongoose.Types.ObjectId,
+      ref: 'user',
+      // required: true,
+    },
   type: {
     type: Boolean,
     required: true,
@@ -32,6 +77,14 @@ const transactionSchema = new Schema({
   date: {
     type: Date,
     required: true,
+  },
+  month: {
+    type: Number,
+    required:true
+  },
+   year: {
+    type: Number,
+    required:true
   },
   category: {
     type: String,
@@ -48,6 +101,7 @@ const transactionSchema = new Schema({
   },
   balanceAfter: {
     type: Number,
+    default:0
     // required: true,
   },
 },
@@ -56,18 +110,27 @@ const transactionSchema = new Schema({
   versionKey: false,
 },
 )
-transactionSchema.virtual('wallet', {
-  ref: 'wallet',
-  localField: '_id',
-  foreignField: 'transactions',
-  justOne: true,
-})
-transactionSchema.virtual('wallet', {
-  ref: 'wallet',
-  localField: 'id',
-  foreignField: 'transactions',
-  justOne: true,
-})
+
+// transactionSchema.virtual('user', {
+//   ref: 'User',
+//   localField: 'userId',
+//   foreignField: '_id',
+//   justOne: false,
+// });
+
+
+// transactionSchema.virtual('wallet', {
+//   ref: 'Wallet',
+//   localField: '_id',
+//   foreignField: 'transactions',
+//   justOne: true,
+// })
+// transactionSchema.virtual('wallet', {
+//   ref: 'Wallet',
+//   localField: 'id',
+//   foreignField: 'transactions',
+//   justOne: true,
+// })
 
 transactionSchema.statics.TYPES = TYPES
 transactionSchema.statics.CATEGORIES = CATEGORIES

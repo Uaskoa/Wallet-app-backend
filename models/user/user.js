@@ -23,34 +23,39 @@ const userSchema = Schema(
     token: {
     type: String,
     default: null,
-  },
+    },
+    // walletUser: {
+    //   type: Schema.Types.ObjectId,
+    //   ref: 'Wallet',
+    //   required: true,
+    // },
   },
   // {
-    // timestamps: true,
-    // toObject: {
-    //   versionKey: false,
-    //   virtuals: true,
-    //   transform: (_, ret) => {
-    //     delete ret.id
+  //   timestamps: true,
+  //   toObject: {
+  //     versionKey: false,
+  //     virtuals: true,
+  //     transform: (_, ret) => {
+  //       delete ret.id
 
-    //     delete ret.password
+  //       delete ret.password
 
-    //     delete ret.wallet
-    //     return ret
-    //   },
-    // },
-    // toJSON: {
-    //   virtuals: true,
-    //   versionKey: false,
-    //   transform: (_, ret) => {
-    //     delete ret.id
+  //       delete ret.wallet
+  //       return ret
+  //     },
+  //   },
+  //   toJSON: {
+  //     virtuals: true,
+  //     versionKey: false,
+  //     transform: (_, ret) => {
+  //       delete ret.id
 
-    //     delete ret.password
+  //       delete ret.password
 
-    //     delete ret.wallet
-    //     return ret
-    //   },
-    // },
+  //       delete ret.wallet
+  //       return ret
+  //     },
+  //   },
   // },
 )
 
@@ -90,6 +95,6 @@ userSchema.methods.comparePassword = function (password) {
 //     .catch(err => done(err))
 // })
 
-const User = model('user', userSchema)
+const User = model('User', userSchema)
 
 module.exports = User
