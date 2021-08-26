@@ -59,12 +59,12 @@ const userSchema = Schema(
   // },
 )
 
-// userSchema.virtual('wallet', {
-//   ref: 'Wallet',
-//   localField: '_id',
-//   foreignField: 'createdBy',
-//   justOne: true,
-// })
+userSchema.virtual('wallet', {
+  ref: 'Wallet',
+  localField: '_id',
+  foreignField: 'createdBy',
+  justOne: true,
+})
 
 userSchema.methods.setPassword = function (password) {
     this.password = bcrypt.hashSync(password, bcrypt.genSaltSync(10));

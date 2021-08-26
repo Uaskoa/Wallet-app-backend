@@ -29,8 +29,12 @@ const ALLOWED_CATEGORIES = {
     OTHER_EXPENSES,
   ],
 }
+
 const createTransaction = async (req, res, next) => {
-  const { date, type, category, comments, amount,year,month } = req.body
+  const { date, type, category, comments, amount } = req.body
+  const year = date.substring(0,4)
+  const month = date.substring(5,7)
+
 
     // const transaction = req.body;
     //   const createdTransaction = await Transaction.createOne({
@@ -45,7 +49,13 @@ const createTransaction = async (req, res, next) => {
     // const user = await User.findById(userId)
       // .populate('wallet')
       // .lean()
+    
+    
     const createTransaction = await service.add({date, type, category, comments, amount,year,month,userId: req.user._id,})
+    
+
+
+    // const createTotalBalance = await ser
     
     
     // const wallet = await Wallet.findById(user.wallet._id)

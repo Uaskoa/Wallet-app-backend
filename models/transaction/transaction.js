@@ -1,3 +1,4 @@
+
 const mongoose = require('mongoose')
 
 const { Schema } = mongoose
@@ -13,52 +14,13 @@ const CATEGORIES = {
   CAR: 'car',
   ENTERTAINMENT: 'entertainment',
   SELF_CARE: 'self care',
-  CHILD_CARE: 'child Care',
+  CHILD_CARE: 'child care',
   HOMEWARE: 'homeware',
   EDUCATION: 'education',
   RECREATION: 'recreation',
   OTHER_EXPENSES: 'other expanses'
 }
-// const transactionSchema = new Schema(
-//   {
-//     userId: {
-//       type: Schema.Types.ObjectId,
-//       ref: 'User',
-//       required: true,
-//     },
-//     type: {
-//       type: String,
-//       default: 'income',
-//       required: true,
-//     },
-//     transactionDate: {
-//       type: Date,
-//       required: true,
-//     },
-//     amount: {
-//       type: Number,
-//       default: 0,
-//       required: true,
-//     },
-//     category: {
-//       type: String,
-//       default: 'income',
-//       required: true,
-//     },
-//     comment: String,
-//     balanceAfter: {
-//       type: Number,
-//       required: true,
-//     },
-//     balanceAfterSign: {
-//       type: String,
-//       required: true,
-//     },
-//   },
-//   {
-//     timestamps: true,
-//   },
-// );
+
 
 const transactionSchema = new Schema({
   userId: {
@@ -66,10 +28,10 @@ const transactionSchema = new Schema({
     // required: true,
   },
   createdBy: {
-      type: mongoose.Types.ObjectId,
-      ref: 'user',
+      type: Schema.Types.ObjectId,
+      ref: 'User',
       // required: true,
-    },
+  },
   type: {
     type: Boolean,
     required: true,
@@ -80,11 +42,11 @@ const transactionSchema = new Schema({
   },
   month: {
     type: Number,
-    required:true
+    // required:true
   },
    year: {
     type: Number,
-    required:true
+    // required:true
   },
   category: {
     type: String,
@@ -111,12 +73,6 @@ const transactionSchema = new Schema({
 },
 )
 
-// transactionSchema.virtual('user', {
-//   ref: 'User',
-//   localField: 'userId',
-//   foreignField: '_id',
-//   justOne: false,
-// });
 
 
 // transactionSchema.virtual('wallet', {

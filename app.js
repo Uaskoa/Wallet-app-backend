@@ -10,8 +10,9 @@ const PORT = process.env.PORT || 3001
 
 const {
   authRouter,
-  walletRouter
+  walletRouter,
 } = require('./routes/api')
+const categoriesRouter = require('./routes/api/categories/categories')
 
 const app = express()
 const formatsLogger = app.get('env') === 'development' ? 'dev' : 'short'
@@ -23,6 +24,7 @@ swaggerDoc(app)
 
 // app.use(express.static('public'))
 app.use('/api/', walletRouter)
+app.use('/api/categories/', categoriesRouter)
 app.use('/api/auth', authRouter)
 
 
