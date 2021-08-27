@@ -1,6 +1,7 @@
+const { object } = require('joi')
 const { Transaction, Wallet, User } = require('../../models')
 const service = require('../../services/transaction')
-
+const TA = require('./../../models/transaction/transaction')
 const { COST, INCOME } = Transaction.TYPES
 const {
   MAIN_EXPENSES,
@@ -30,35 +31,48 @@ const ALLOWED_CATEGORIES = {
   ],
 }
 
+
 const createTransaction = async (req, res, next) => {
   const { date, type, category, comments, amount, createdBy } = req.body
   const year = date.substring(0,4)
   const month = date.substring(5,7)
 
-
-    // const transaction = req.body;
-    //   const createdTransaction = await Transaction.createOne({
-    //     ...transaction,
-    //     userId: req.user._id,
-    //   });
-
-  // const userId = req.user._id
+  const userId = req.user._id
   // const balance = COST ? 
   try {
-    // const amountNumber = +amount
+    let balanceAfter
+    const amountNumber = +amount
     // const user = await User.findById(userId)
-      // .populate('wallet')
-      // .lean()
+    //   .populate('wallet')
+    const resultBalance = (lastBalance) => {
+       console.log(lastBalance);
+      return type === COST ? lastBalance - amountNumber:lastBalance + amountNumber
+      
+    }
+
+    const lastBalance = await TA.find({ createdBy: userId }).sort({ $natural: -1 }).limit(1)
+    // console.log(typeof lastBalance);
+    if ( lastBalance[0].balanceAfter === undefined ) {
+      console.log(1);
+     balanceAfter = resultBalance(0)
+    } else {
+    //  balanceAfter = resultBalance(lastBalance[0].balanceAfter)
+    }
+
+    if ( balanceAfter < amount && type===COST) {
+      return res.json({
+        'messege':'Баланс не может быть отрицательным'
+      })
+    }
+
     
-    
-    const result = await service.add({date, type, category, comments, amount,year,month,createdBy,userId: req.user._id,})
-    
+     
+    // balanceAfter = type === COST ? lastBalance[0].balanceAfter - amountNumber:lastBalance[0].balanceAfter+amountNumber
+    const result = await service.add({date, type, category, comments, amount,year,month,balanceAfter,createdBy,userId: req.user._id,})
     return res.json({
      data:{result}
    })
-
-    // const createTotalBalance = await ser
-    
+  
     
     // const wallet = await Wallet.findById(user.wallet._id)
     // console.log(wallet);
