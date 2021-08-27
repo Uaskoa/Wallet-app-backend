@@ -6,6 +6,10 @@ const categoriesSchema = new Schema({
      categories: {
          type: String
     }, 
+},
+{
+  timestamps: true,
+  versionKey: false,  
 }
 )
 

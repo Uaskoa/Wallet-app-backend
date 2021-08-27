@@ -1,4 +1,4 @@
-const { Categories } = require('../models/categories/categories')
+const  Categories  = require('../models/categories/categories')
 
 const getAllCategories = () => {
     const result = Categories.find()

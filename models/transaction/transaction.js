@@ -25,12 +25,12 @@ const CATEGORIES = {
 const transactionSchema = new Schema({
   userId: {
     type: String,
-    // required: true,
+    required: true,
   },
   createdBy: {
       type: Schema.Types.ObjectId,
       ref: 'User',
-      // required: true,
+      required: true,
   },
   type: {
     type: Boolean,
@@ -42,11 +42,11 @@ const transactionSchema = new Schema({
   },
   month: {
     type: Number,
-    // required:true
+    required:true
   },
    year: {
     type: Number,
-    // required:true
+    required:true
   },
   category: {
     type: String,

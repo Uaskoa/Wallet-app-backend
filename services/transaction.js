@@ -1,9 +1,9 @@
 const Transactions = require('../models/transaction/transaction')
 
 
-const add = ({ type, date, category, comments, amount,year,month, userId }) => {
+const add = ({ type, date, category, comments, amount,year,month, userId,createdBy }) => {
  
-    const newTransaction = new Transactions({ type, date, category, comments, amount,year,month,userId })
+    const newTransaction = new Transactions({ type, date, category, comments, amount,year,month,userId,createdBy }).populate('createdBy')
     
     return newTransaction.save()
 }
@@ -11,13 +11,13 @@ const add = ({ type, date, category, comments, amount,year,month, userId }) => {
 
 const getByFilter = ( id,month,year ) => {
   
-  const result = Transactions.find({ userId: id, month: month,year:year })
+  const result = Transactions.find({ userId: id, month: month,year:year }).populate('createdBy')
   return result
 }
 
 const getAll = (id) => {
-  const result = Transactions.find({ userId:id })
-  return result
+ return Transactions.find({ userId:id }).populate('createdBy')
+   
 }
 
 const getOne = (filter) => {
