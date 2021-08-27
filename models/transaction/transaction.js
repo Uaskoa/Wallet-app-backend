@@ -4,20 +4,19 @@ const mongoose = require('mongoose')
 const { Schema } = mongoose
 
 const TYPES = {
-  INCOME: true,
-  COST: false,
+  INCOME: 'false',
+  COST: 'true',
 }
 
 const CATEGORIES = {
-  MAIN_EXPENSES: 'Main expanses',
+  MAIN: 'main',
   FOOD: 'food',
   CAR: 'car',
-  ENTERTAINMENT: 'entertainment',
-  SELF_CARE: 'self care',
-  CHILD_CARE: 'child care',
-  HOMEWARE: 'homeware',
+  DEVELOPMENT: 'development',
+  KIDS: 'kids',
+  HOME: 'home',
   EDUCATION: 'education',
-  RECREATION: 'recreation',
+  REST: 'rest',
   OTHER_EXPENSES: 'other expanses'
 }
 
@@ -53,7 +52,7 @@ const transactionSchema = new Schema({
     required: true,
     enum: Object.values(CATEGORIES)
   },
-  comments: {
+  comment: {
     type: String,
     maxlength: 300,
   },
@@ -63,8 +62,7 @@ const transactionSchema = new Schema({
   },
   balanceAfter: {
     type: Number,
-    default:0
-    // required: true,
+    required: true,
   },
 },
 {
