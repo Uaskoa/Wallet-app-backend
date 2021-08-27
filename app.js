@@ -5,8 +5,8 @@ const logger = require('morgan')
 const swaggerDoc = require('./swaggerJSDoc')
 require('dotenv').config()
 require('./configs/passport-config')
-const { DB_HOST} = process.env
-const PORT = process.env.PORT || 3001
+// const { DB_HOST} = process.env
+// const PORT = process.env.PORT || 3001
 
 // const {
 //   authRouter,
@@ -37,19 +37,19 @@ app.use('/api/categories', categoriesRouter);
 app.use('/api/users', authRouter);
 
 
-mongoose
-  .connect(DB_HOST, {
-    useNewUrlParser: true,
-    useCreateIndex: true,
-    useUnifiedTopology: true,
-    useFindAndModify: false,
-  })
-  .then(() => app.listen(PORT, () => {
-    console.log(`Database connection successful`)
-  })).catch((error) => {
-    console.log(error)
-    return process.exit(1)
-  })
+// mongoose
+//   .connect(DB_HOST, {
+//     useNewUrlParser: true,
+//     useCreateIndex: true,
+//     useUnifiedTopology: true,
+//     useFindAndModify: false,
+//   })
+//   .then(() => app.listen(PORT, () => {
+//     console.log(`Database connection successful`)
+//   })).catch((error) => {
+//     console.log(error)
+//     return process.exit(1)
+//   })
 
   app.use((req, res) => {
   res.status(404).json({

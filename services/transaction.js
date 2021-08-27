@@ -1,28 +1,48 @@
-const Transactions = require('../models/transaction/transaction')
+const Transaction = require('../models/index');
 
+const add = ({
+  type,
+  date,
+  category,
+  comment,
+  amount,
+  year,
+  month,
+  balanceAfter,
+  userId,
+  createdBy,
+}) => {
+  const newTransaction = new Transactions({
+    type,
+    date,
+    category,
+    comment,
+    amount,
+    year,
+    month,
+    balanceAfter,
+    userId,
+    createdBy,
+  }).populate('createdBy');
 
-const add = ({ type, date, category, comments, amount,year,month, userId,createdBy }) => {
- 
-    const newTransaction = new Transactions({ type, date, category, comments, amount,year,month,userId,createdBy }).populate('createdBy')
-    
-    return newTransaction.save()
-}
+  return newTransaction.save();
+};
 
+const getByFilter = (id, month, year) => {
+  const result = Transactions.find({
+    userId: id,
+    month: month,
+    year: year,
+  }).populate('createdBy');
+  return result;
+};
 
-const getByFilter = ( id,month,year ) => {
-  
-  const result = Transactions.find({ userId: id, month: month,year:year }).populate('createdBy')
-  return result
-}
+const getAll = id => {
+  return Transactions.find({ userId: id }).populate('createdBy');
+};
 
-const getAll = (id) => {
- return Transactions.find({ userId:id }).populate('createdBy')
-   
-}
+const getOne = filter => {
+  return Transactions.findOne(filter);
+};
 
-const getOne = (filter) => {
-
-  return Transactions.findOne(filter)
-}
-
-module.exports = {add,getOne,getAll,getByFilter}
+module.exports = { add, getOne, getAll, getByFilter };

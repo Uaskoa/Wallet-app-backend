@@ -1,6 +1,6 @@
-const  { Schema , model } = require('mongoose')
-const validator = require('validator')
-const bcrypt = require('bcryptjs')
+const { Schema, model } = require('mongoose');
+const validator = require('validator');
+const bcrypt = require('bcryptjs');
 
 // const { Schema } = mongoose
 
@@ -14,21 +14,21 @@ const userSchema = Schema(
     },
     password: {
       type: String,
-      required: true
+      required: true,
     },
     name: {
       type: String,
-      required: true
+      required: true,
     },
     token: {
-    type: String,
-    default: null,
+      type: String,
+      default: null,
     },
-    transactionUser: {
-      type: Schema.Types.ObjectId,
-      ref: 'Transaction',
-      // required: true,
-    },
+    // transactionUser: {
+    //   type: Schema.Types.ObjectId,
+    //   ref: 'Transaction',
+    //   required: true,
+    // },
   },
   // {
   //   timestamps: true,
@@ -57,22 +57,22 @@ const userSchema = Schema(
   //     },
   //   },
   // },
-)
+);
 
-// userSchema.virtual('wallet', {
-//   ref: 'Wallet',
-//   localField: '_id',
-//   foreignField: 'createdBy',
-//   justOne: true,
-// })
+userSchema.virtual('wallet', {
+  ref: 'Wallet',
+  localField: '_id',
+  foreignField: 'createdBy',
+  justOne: true,
+});
 
 userSchema.methods.setPassword = function (password) {
-    this.password = bcrypt.hashSync(password, bcrypt.genSaltSync(10));
-}
+  this.password = bcrypt.hashSync(password, bcrypt.genSaltSync(10));
+};
 
 userSchema.methods.comparePassword = function (password) {
-      return bcrypt.compareSync(password, this.password);
-}
+  return bcrypt.compareSync(password, this.password);
+};
 
 // userSchema.methods.comparePasswords = async function comparePasswords(password) {
 //   try {
@@ -95,6 +95,6 @@ userSchema.methods.comparePassword = function (password) {
 //     .catch(err => done(err))
 // })
 
-const User = model('User', userSchema)
+const User = model('User', userSchema);
 
-module.exports = User
+module.exports = User;

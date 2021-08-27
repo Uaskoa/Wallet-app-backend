@@ -1,79 +1,74 @@
+const mongoose = require('mongoose');
 
-const mongoose = require('mongoose')
-
-const { Schema } = mongoose
+const { Schema } = mongoose;
 
 const TYPES = {
-  INCOME: true,
-  COST: false,
-}
+  INCOME: 'false',
+  COST: 'true',
+};
 
 const CATEGORIES = {
-  MAIN_EXPENSES: 'Main expanses',
+  MAIN: 'main',
   FOOD: 'food',
   CAR: 'car',
-  ENTERTAINMENT: 'entertainment',
-  SELF_CARE: 'self care',
-  CHILD_CARE: 'child care',
-  HOMEWARE: 'homeware',
+  DEVELOPMENT: 'development',
+  KIDS: 'kids',
+  HOME: 'home',
   EDUCATION: 'education',
-  RECREATION: 'recreation',
-  OTHER_EXPENSES: 'other expanses'
-}
+  REST: 'rest',
+  OTHER_EXPENSES: 'other expanses',
+};
 
-
-const transactionSchema = new Schema({
-  userId: {
-    type: String,
-    required: true,
-  },
-  createdBy: {
+const transactionSchema = new Schema(
+  {
+    userId: {
+      type: String,
+      required: true,
+    },
+    createdBy: {
       type: Schema.Types.ObjectId,
       ref: 'User',
       required: true,
+    },
+    type: {
+      type: Boolean,
+      required: true,
+    },
+    date: {
+      type: Date,
+      required: true,
+    },
+    month: {
+      type: Number,
+      required: true,
+    },
+    year: {
+      type: Number,
+      required: true,
+    },
+    category: {
+      type: String,
+      required: true,
+      enum: Object.values(CATEGORIES),
+    },
+    comment: {
+      type: String,
+      maxlength: 300,
+    },
+    amount: {
+      type: Number,
+      required: true,
+    },
+    balanceAfter: {
+      type: Number,
+      required: true,
+    },
   },
-  type: {
-    type: Boolean,
-    required: true,
+  {
+    timestamps: true,
+    versionKey: false,
   },
-  date: {
-    type: Date,
-    required: true,
-  },
-  month: {
-    type: Number,
-    required:true
-  },
-   year: {
-    type: Number,
-    required:true
-  },
-  category: {
-    type: String,
-    required: true,
-    enum: Object.values(CATEGORIES)
-  },
-  comments: {
-    type: String,
-    maxlength: 300,
-  },
-  amount: {
-    type: Number,
-    required: true,
-  },
-  balanceAfter: {
-    type: Number,
-    default:0
-    // required: true,
-  },
-},
-{
-  timestamps: true,
-  versionKey: false,
-},
-)
-
-
+);
 
 // transactionSchema.virtual('wallet', {
 //   ref: 'Wallet',
@@ -88,9 +83,11 @@ const transactionSchema = new Schema({
 //   justOne: true,
 // })
 
-transactionSchema.statics.TYPES = TYPES
-transactionSchema.statics.CATEGORIES = CATEGORIES
+transactionSchema.statics.TYPES = TYPES;
 
-const Transaction = mongoose.model('Transaction', transactionSchema)
+transactionSchema.statics.CATEGORIES = CATEGORIES;
 
-module.exports = Transaction
+
+const Transaction = mongoose.model('Transaction', transactionSchema);
+
+module.exports = Transaction;
