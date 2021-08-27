@@ -33,17 +33,16 @@ const ALLOWED_CATEGORIES = {
 
 
 const createTransaction = async (req, res, next) => {
-  const { date, type, category, comments, amount, createdBy } = req.body
+  const { date, type, category, comments, amount } = req.body
   const year = date.substring(0,4)
   const month = date.substring(5,7)
 
   const userId = req.user._id
-  // const balance = COST ? 
   try {
     let balanceAfter
     const amountNumber = +amount
-    // const user = await User.findById(userId)
-    //   .populate('wallet')
+
+
     const resultBalance = (lastBalance) => {
       
       return type === COST ? lastBalance - amountNumber:lastBalance + amountNumber
@@ -51,7 +50,7 @@ const createTransaction = async (req, res, next) => {
     }
 
     const lastBalance = await TA.find({ createdBy: userId }).sort({ $natural: -1 }).limit(1)
-    // console.log(lastBalance[0]);
+
     if (lastBalance[0] === undefined) {
       if (type === COST) {
         return res.json({
@@ -67,14 +66,14 @@ const createTransaction = async (req, res, next) => {
     }
      balanceAfter = resultBalance(lastBalance[0].balanceAfter)
     }
-
     
-    // balanceAfter = type === COST ? lastBalance[0].balanceAfter - amountNumber:lastBalance[0].balanceAfter+amountNumber
-    const result = await service.add({date, type, category, comments, amount,year,month,balanceAfter,createdBy,userId: req.user._id,})
+    const result = await service.add({date, type, category, comments, amount,year,month,balanceAfter,createdBy:req.user._id, userId: req.user._id,})
     return res.json({
      data:{result}
    })
   
+    
+    
     // const wallet = await Wallet.findById(user.wallet._id)
     // console.log(wallet);
   //   if (!ALLOWED_CATEGORIES[type].includes(category)) {
