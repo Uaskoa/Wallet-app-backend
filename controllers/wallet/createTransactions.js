@@ -33,7 +33,7 @@ const ALLOWED_CATEGORIES = {
 
 
 const createTransaction = async (req, res, next) => {
-  const { date, type, category, comments, amount } = req.body
+  const { date, type, category, comment, amount } = req.body
   const year = date.substring(0,4)
   const month = date.substring(5,7)
 
@@ -67,7 +67,7 @@ const createTransaction = async (req, res, next) => {
      balanceAfter = resultBalance(lastBalance[0].balanceAfter)
     }
     
-    const result = await service.add({date, type, category, comments, amount,year,month,balanceAfter,createdBy:req.user._id, userId: req.user._id,})
+    const result = await service.add({date, type, category, comment, amount,year,month,balanceAfter,createdBy:req.user._id, userId: req.user._id,})
     return res.json({
      data:{result}
    })

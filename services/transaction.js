@@ -1,9 +1,9 @@
 const Transactions = require('../models/transaction/transaction')
 
 
-const add = ({ type, date, category, comments, amount,year,month,balanceAfter, userId,createdBy }) => {
+const add = ({ type, date, category, comment, amount,year,month,balanceAfter, userId,createdBy }) => {
  
-    const newTransaction = new Transactions({ type, date, category, comments, amount,year,month,balanceAfter,userId,createdBy }).populate('createdBy')
+    const newTransaction = new Transactions({ type, date, category, comment, amount,year,month,balanceAfter,userId,createdBy }).populate('createdBy')
     
     return newTransaction.save()
 }
