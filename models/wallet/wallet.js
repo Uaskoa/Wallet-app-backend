@@ -1,6 +1,6 @@
-const mongoose = require('mongoose')
+const mongoose = require('mongoose');
 
-const { Schema, model } = mongoose
+const { Schema, model } = mongoose;
 
 const walletSchema = new Schema(
   {
@@ -10,9 +10,9 @@ const walletSchema = new Schema(
       required: true,
     },
     transactions: {
-        type: Schema.Types.ObjectId,
-        ref: 'Transaction',
-      },
+      type: Schema.Types.ObjectId,
+      ref: 'Transaction',
+    },
     total: {
       type: Number,
       default: 0,
@@ -30,8 +30,8 @@ const walletSchema = new Schema(
     timestamps: true,
     versionKey: false,
   },
-)
+);
 
-const Wallet = model('Wallet', walletSchema)
+const Wallet = model('Wallet', walletSchema);
 
-module.exports = Wallet
+module.exports = Wallet;

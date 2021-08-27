@@ -1,32 +1,32 @@
-const jwt = require('jsonwebtoken')
-require('dotenv')
-const service = require('../../services/user')
+const jwt = require('jsonwebtoken');
+require('dotenv');
+const service = require('../../services/user');
 
 const login = async (req, res, next) => {
-  const { email, password } = req.body
+  const { email, password } = req.body;
   try {
-    const user = await service.getOne({ email })
+    const user = await service.getOne({ email });
     if (!user || !user.comparePassword(password)) {
       return res.status(400).json({
         status: 'error',
         code: 400,
-        message: 'incorrect email or password'
-      })
+        message: 'incorrect email or password',
+      });
     }
-    const { SECRET_KEY } = process.env
+    const { SECRET_KEY } = process.env;
     const payload = {
-      id: user._id
-    }
-    const token = jwt.sign(payload, SECRET_KEY)
-    await service.updateById(user._id, { token })
+      id: user._id,
+    };
+    const token = jwt.sign(payload, SECRET_KEY);
+    await service.updateById(user._id, { token });
     res.json({
       status: 'success',
       code: 200,
-      data: { result: token }
-    })
+      data: { result: token },
+    });
   } catch (error) {
-    next(error)
+    next(error);
   }
-}
+};
 
-module.exports = login
+module.exports = login;
