@@ -1,3 +1,8 @@
-const walletRouter = require('./wallet')
+// const walletRouter = require('./wallet')
 
-module.exports = walletRouter
+// module.exports = walletRouter
+
+
+const transactionsRouter = require('./wallet');
+
+module.exports = transactionsRouter;

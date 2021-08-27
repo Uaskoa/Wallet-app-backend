@@ -8,11 +8,17 @@ require('./configs/passport-config')
 const { DB_HOST} = process.env
 const PORT = process.env.PORT || 3001
 
-const {
-  authRouter,
-  walletRouter,
-} = require('./routes/api')
-const categoriesRouter = require('./routes/api/categories/categories')
+// const {
+//   authRouter,
+//   walletRouter,
+// } = require('./routes/api')
+// const categoriesRouter = require('./routes/api/categories/categories')
+
+const { authRouter, transactionsRouter } = require('./routes/api');
+const categoriesRouter = require('./routes/api/categories/categories');
+
+
+
 
 const app = express()
 const formatsLogger = app.get('env') === 'development' ? 'dev' : 'short'
@@ -22,9 +28,14 @@ app.use(cors())
 app.use(express.json())
 swaggerDoc(app)
 
-app.use('/api', walletRouter)
-app.use('/api/categories', categoriesRouter)
-app.use('/api/auth', authRouter)
+// app.use('/api', walletRouter)
+// app.use('/api/categories', categoriesRouter)
+// app.use('/api/auth', authRouter)
+
+app.use('/api/transactions', transactionsRouter);
+app.use('/api/categories', categoriesRouter);
+app.use('/api/users', authRouter);
+
 
 mongoose
   .connect(DB_HOST, {

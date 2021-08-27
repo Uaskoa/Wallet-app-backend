@@ -27,7 +27,7 @@ const userSchema = Schema(
     transactionUser: {
       type: Schema.Types.ObjectId,
       ref: 'Transaction',
-      required: true,
+      // required: true,
     },
   },
   // {
