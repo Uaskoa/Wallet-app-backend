@@ -1,6 +1,5 @@
 const jwt = require('jsonwebtoken')
 require('dotenv')
-// const { User: service } = require('../../services')
 const service = require('../../services/user')
 
 const login = async (req, res, next) => {

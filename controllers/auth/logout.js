@@ -1,4 +1,3 @@
-// const { User: service } = require('../../services')
 const service = require('../../services/user')
 
 const logout = async (req, res, next) => {

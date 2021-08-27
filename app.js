@@ -22,13 +22,9 @@ app.use(cors())
 app.use(express.json())
 swaggerDoc(app)
 
-// app.use(express.static('public'))
-app.use('/api/', walletRouter)
-app.use('/api/categories/', categoriesRouter)
+app.use('/api', walletRouter)
+app.use('/api/categories', categoriesRouter)
 app.use('/api/auth', authRouter)
-
-
-
 
 mongoose
   .connect(DB_HOST, {

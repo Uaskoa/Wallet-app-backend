@@ -1,8 +1,5 @@
-// const { user: service } = require('../../services')
 const validateUser = require('../../middlewares/utils')
 const service = require('../../services/user')
-// const { nanoid } = require('nanoid')
-// const verifyToken = nanoid()
 
 
 const signUp = async (req, res, next) => {
