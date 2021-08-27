@@ -14,10 +14,9 @@ const CATEGORIES = {
   CAR: 'car',
   DEVELOPMENT: 'development',
   KIDS: 'kids',
-  CHILD_CARE: 'child care',
-  HOMEWARE: 'home',
+  HOME: 'home',
   EDUCATION: 'education',
-  RECREATION: 'rest',
+  REST: 'rest',
   OTHER_EXPENSES: 'other expanses'
 }
 
