@@ -1,7 +1,7 @@
 {
   "openapi": "3.0.1",
   "info": {
-    "version": "1.0.0",
+    "version": "1.0.1",
     "title": "wallet-app",
     "description": "Express API for the Wallet, here are the routes",
     "license": {
@@ -20,6 +20,10 @@
     {
       "name": "Transaction",
       "description": "Transaction endpoints"
+    },
+{
+      "name": "Categories",
+      "description": "Categories endpoints"
     }
   ],
   "paths": {
@@ -120,6 +124,55 @@
         }
       }
     },
+
+"/current": {
+      "get": {
+        "tags": ["Auth"],
+        "summary": "Get logged user",
+        "parameters": [],
+        "responses": {
+          "200": {
+            "description": "Return logged in user",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/currentResponse"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Token is not valid or disabled",
+            "content": {}
+          }
+        }
+      }
+    },
+   "/veryfy/:verifyToken": {
+      "get": {
+        "tags": ["Auth"],
+        "summary": "verifycation token",
+        "parameters": [],
+        "responses": {
+          "200": {
+            "description": "Return token",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/verifyTokenResponse"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Token is not valid or disabled",
+            "content": {}
+          }
+        }
+      }
+    },
+   
+    
     "/transactions": {
       "post": {
         "tags": ["Transaction"],
@@ -177,7 +230,30 @@
             "content": {}
           }
         } 
-        }
+        },
+
+"/all": {
+      "get": {
+        "tags": ["Categories"],
+        "summary": "Gives user categories list",
+        "parameters": [],
+        "responses": {
+          "201": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/getAllCategoriesResponse"
+                }
+              }
+            }}
+          },
+          "400": {
+            "description": "User request body format is invalid",
+            "content": {}
+          }
+          }}
+
       
     },
   "components": {
@@ -255,7 +331,18 @@
           }
         
       },
-      
+      "LogoutRequest": {
+        "type": "string",
+        "required": "token",
+        "properties": {
+          "token": {
+              "type": "string",
+              "description": "token",
+              "example": "dfgdfg444ddg3"
+            }
+        
+        }
+      },
       "LogoutResponse": {
         "type": "string",
           "properties": {
@@ -264,6 +351,7 @@
               "description": "Logout success"
             } 
           }
+        
       },
       "createTransactionsRequest": {
         "type": "object",
@@ -307,7 +395,7 @@
         "type": "object",
           "properties": {
            "date": {
-            "type": "string",
+            "type": "date",
             "description": "Date's transaction",
             "format": "date",
             "example": "01.01.2021"
@@ -343,14 +431,13 @@
             "description": "total balance transaction",
             "example": "10000"
           }
-          }
-        
-      },
+          } 
+      } ,   
       "TransactionsResponse": {
         "type": "object",
           "properties": {
            "date": {
-            "type": "date",
+            "type": "string",
             "description": "Date's transaction",
             "format": "date",
             "example": "01.01.2021"
@@ -387,9 +474,38 @@
             "example": "10000"
           }
           } 
+      },
+      "getAllCategoriesResponse": {
+        "type": "object",
+          "properties": {
+           "date": {
+            "type": "date",
+            "description": "Date's category"
+
+          },
+          "category": {
+            "type": "string",
+            "description": "category`s transaction"
+    
+          }
+          } 
+      },
+"currentResponse": {
+        "type": "object",
+          "properties": {
+           "id": {
+            "type": "string"
+          },
+          "name": {
+            "type": "string"
+          },
+		"email": {
+            "type": "string"
+          }
+          } 
       }
     }
-    },
+  },
     "securitySchemes": {
       "Bearer": {
         "type": "http",
