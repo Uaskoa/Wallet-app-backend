@@ -21,16 +21,15 @@ const CATEGORIES = {
   OTHER_EXPENSES: 'other expanses'
 }
 
-
 const transactionSchema = new Schema({
   userId: {
     type: String,
     required: true,
   },
   createdBy: {
-      type: Schema.Types.ObjectId,
-      ref: 'User',
-      required: true,
+    type: Schema.Types.ObjectId,
+    ref: 'User',
+    required: true,
   },
   type: {
     type: Boolean,
@@ -42,11 +41,11 @@ const transactionSchema = new Schema({
   },
   month: {
     type: Number,
-    required:true
+    required: true
   },
-   year: {
+  year: {
     type: Number,
-    required:true
+    required: true
   },
   category: {
     type: String,
@@ -71,8 +70,6 @@ const transactionSchema = new Schema({
   versionKey: false,
 },
 )
-
-
 
 // transactionSchema.virtual('wallet', {
 //   ref: 'Wallet',

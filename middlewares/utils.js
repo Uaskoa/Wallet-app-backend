@@ -3,7 +3,7 @@ const Joi = require('joi')
 const validateUserSignUp = Joi.object({
   email: Joi.string().email().required(),
   password: Joi.string().min(8).required(),
-  name:Joi.string().min(2).required()
+  name: Joi.string().min(2).required()
 })
 
 // const validateUser = newUser => {
@@ -21,6 +21,6 @@ const validateUserSignUp = Joi.object({
 //    })
 //   const { error } = schema.validate(user)
 //   return error
-// } 
+// }
 
-module.exports =  validateUserSignUp
+module.exports = validateUserSignUp

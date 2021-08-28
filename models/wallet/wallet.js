@@ -10,9 +10,9 @@ const walletSchema = new Schema(
       required: true,
     },
     transactions: {
-        type: Schema.Types.ObjectId,
-        ref: 'Transaction',
-      },
+      type: Schema.Types.ObjectId,
+      ref: 'Transaction',
+    },
     total: {
       type: Number,
       default: 0,

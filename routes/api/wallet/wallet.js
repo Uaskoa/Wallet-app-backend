@@ -8,5 +8,4 @@ walletRouter.post('/transactions', authenticate, ctrl.createTransactions)
 walletRouter.get('/transactions', authenticate, ctrl.getTransactionsByFilter)
 walletRouter.get('/transactions/all', authenticate, ctrl.getAllTransactions)
 
-
 module.exports = walletRouter

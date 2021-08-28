@@ -3,13 +3,13 @@ const mongoose = require('mongoose')
 const { Schema, model } = mongoose
 
 const categoriesSchema = new Schema({
-     categories: {
-         type: String
-    }, 
+  categories: {
+    type: String
+  },
 },
 {
   timestamps: true,
-  versionKey: false,  
+  versionKey: false,
 }
 )
 

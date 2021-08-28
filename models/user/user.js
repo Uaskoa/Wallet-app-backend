@@ -1,4 +1,4 @@
-const  { Schema , model } = require('mongoose')
+const { Schema, model } = require('mongoose')
 const validator = require('validator')
 const bcrypt = require('bcryptjs')
 
@@ -21,8 +21,8 @@ const userSchema = Schema(
       required: true
     },
     token: {
-    type: String,
-    default: null,
+      type: String,
+      default: null,
     },
     // transactionUser: {
     //   type: Schema.Types.ObjectId,
@@ -67,11 +67,11 @@ userSchema.virtual('wallet', {
 })
 
 userSchema.methods.setPassword = function (password) {
-    this.password = bcrypt.hashSync(password, bcrypt.genSaltSync(10));
+  this.password = bcrypt.hashSync(password, bcrypt.genSaltSync(10));
 }
 
 userSchema.methods.comparePassword = function (password) {
-      return bcrypt.compareSync(password, this.password);
+  return bcrypt.compareSync(password, this.password);
 }
 
 // userSchema.methods.comparePasswords = async function comparePasswords(password) {

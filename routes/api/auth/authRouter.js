@@ -9,8 +9,6 @@ const {
 } = require('../../../middlewares')
 // const { vaidateAuth } = require('../../../services')
 
-
-
 authRouter.post('/signup', ctrl.signUp)
 authRouter.post('/login', ctrl.login)
 authRouter.post('/logout', authenticate, ctrl.logout)

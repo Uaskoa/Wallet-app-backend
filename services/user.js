@@ -1,8 +1,8 @@
 const User = require('../models/user/user')
 
-const getUserTa = (filter) => {
+/* const getUserTa = (filter) => {
   User.find(filter)
-}
+} */
 
 const getOne = (filter) => {
   return User.findOne(filter)
