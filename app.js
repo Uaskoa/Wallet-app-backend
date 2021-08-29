@@ -1,12 +1,9 @@
 const express = require('express');
 const cors = require('cors');
-const mongoose = require('mongoose');
 const logger = require('morgan');
 const swaggerDoc = require('./swaggerJSDoc');
 require('dotenv').config();
 require('./configs/passport-config');
-// const { DB_HOST} = process.env
-// const PORT = process.env.PORT || 3001
 
 const {
   authRouter,
@@ -22,27 +19,9 @@ app.use(cors());
 app.use(express.json());
 swaggerDoc(app);
 
-// app.use('/api', walletRouter)
-// app.use('/api/categories', categoriesRouter)
-// app.use('/api/auth', authRouter)
-
 app.use('/api/transactions', transactionsRouter);
 app.use('/api/categories', categoriesRouter);
 app.use('/api/users', authRouter);
-
-// mongoose
-//   .connect(DB_HOST, {
-//     useNewUrlParser: true,
-//     useCreateIndex: true,
-//     useUnifiedTopology: true,
-//     useFindAndModify: false,
-//   })
-//   .then(() => app.listen(PORT, () => {
-//     console.log(`Database connection successful`)
-//   })).catch((error) => {
-//     console.log(error)
-//     return process.exit(1)
-//   })
 
 app.use((req, res) => {
   res.status(404).json({

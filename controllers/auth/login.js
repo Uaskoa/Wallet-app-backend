@@ -22,7 +22,13 @@ const login = async (req, res, next) => {
     res.json({
       status: 'success',
       code: 200,
-      data: { result: token },
+      data: {
+        token: token,
+        user: {
+          name: user.name,
+          email: user.email,
+        },
+      },
     });
   } catch (error) {
     next(error);
