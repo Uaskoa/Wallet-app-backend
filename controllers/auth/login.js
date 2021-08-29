@@ -24,10 +24,19 @@ const login = async (req, res, next) => {
       code: 200,
       data: {
         token: token,
-        result: {
+<<<<<<< Updated upstream
+        user: {
           name: user.name,
           email: user.email
         }
+=======
+        user:
+          {
+            name: user.name,
+            email: user.email
+          }
+
+>>>>>>> Stashed changes
       }
     })
   } catch (error) {
