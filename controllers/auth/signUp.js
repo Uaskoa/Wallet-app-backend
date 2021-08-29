@@ -34,7 +34,7 @@ const signUp = async (req, res, next) => {
     }
     const token = jwt.sign(payload, SECRET_KEY)
     await service.updateById(user._id, { token })
-    console.log();
+    
     const userInfo = {
       name:user.name,
       email: user.email,
@@ -42,7 +42,9 @@ const signUp = async (req, res, next) => {
     res.status(201).json({
       status: 'success',
       code: 201,
-      data: { user: userInfo },
+      data: {
+        user: userInfo,
+      },
       token: token,
       message: 'success'
     })
