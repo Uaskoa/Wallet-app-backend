@@ -1,5 +1,5 @@
 const authRouter = require('./auth/index')
-const walletRouter = require('./wallet')
-// const categoriesRouter = require('./categories/categories')
+const transactionsRouter = require('./transactions');
+const categoriesRouter = require('./categories')
 
-module.exports = { authRouter, walletRouter }
+module.exports = { authRouter, transactionsRouter, categoriesRouter };

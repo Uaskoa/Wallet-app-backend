@@ -1,4 +1,4 @@
-const passport = require('passport')
+const passport = require('passport');
 
 const authenticate = (req, res, next) => {
   passport.authenticate('jwt', { session: false }, (error, user) => {
@@ -6,13 +6,13 @@ const authenticate = (req, res, next) => {
       res.status(401).json({
         status: 'error',
         code: 401,
-        message: 'Unauthorized'
-      })
-      return
+        message: 'Unauthorized',
+      });
+      return;
     }
-    req.user = user
-    next()
-  })(req, res, next)
-}
+    req.user = user;
+    next();
+  })(req, res, next);
+};
 
-module.exports = authenticate
+module.exports = authenticate;

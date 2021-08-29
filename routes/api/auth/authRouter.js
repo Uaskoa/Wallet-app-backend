@@ -8,4 +8,4 @@ authRouter.post('/login', ctrl.login)
 authRouter.post('/logout', authenticate, ctrl.logout)
 authRouter.get('/current', authenticate, ctrl.getProfile)
 
-module.exports = authRouter
+module.exports = authRouter;
