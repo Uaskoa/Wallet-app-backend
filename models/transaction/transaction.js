@@ -48,7 +48,6 @@ const transactionSchema = new Schema(
     },
     category: {
       type: String,
-      required: true,
       enum: Object.values(CATEGORIES),
     },
     comment: {
