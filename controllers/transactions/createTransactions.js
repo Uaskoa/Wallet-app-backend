@@ -1,8 +1,7 @@
-const { object } = require('joi');
-const { Transaction, Wallet, User } = require('../../models');
+const { Transaction } = require('../../models');
 const service = require('../../services/transaction');
 const TA = require('../../models/transaction/transaction');
-const { COST, INCOME } = Transaction.TYPES;
+const { COST } = Transaction.TYPES;
 const {
   MAIN_EXPENSES,
   FOOD,
@@ -15,21 +14,6 @@ const {
   RECREATION,
   OTHER_EXPENSES,
 } = Transaction.CATEGORIES;
-
-const ALLOWED_CATEGORIES = {
-  [COST]: [
-    MAIN_EXPENSES,
-    FOOD,
-    CAR,
-    ENTERTAINMENT,
-    SELF_CARE,
-    CHILD_CARE,
-    HOMEWARE,
-    EDUCATION,
-    RECREATION,
-    OTHER_EXPENSES,
-  ],
-};
 
 const createTransaction = async (req, res, next) => {
   const { date, type, category, comment, amount } = req.body;
