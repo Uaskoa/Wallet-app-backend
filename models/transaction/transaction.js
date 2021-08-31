@@ -9,13 +9,14 @@ const TYPES = {
 
 const CATEGORIES = {
   MAIN: 'main',
-  FOOD: 'food',
+  MAIN_INCOME: 'mainIncome',
   CAR: 'car',
   DEVELOPMENT: 'development',
   KIDS: 'kids',
   HOME: 'home',
   EDUCATION: 'education',
   REST: 'rest',
+  REST_INCOME: 'restIncome',
   OTHER_EXPENSES: 'other expanses',
 };
 
