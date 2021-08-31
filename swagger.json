@@ -1,6 +1,5 @@
-
 {
-  "openapi": "3.0.1",
+  "openapi": "3.0.0",
 
   "info": {
     "version": "1.0.1",
@@ -267,7 +266,8 @@
           "content": {}
         }
       },
-
+    
+    
       "get": {
         "tags": ["Transaction"],
 
@@ -296,510 +296,508 @@
             "content": {}
           }
         }
-      },
+      }},
 
-      "/all": {
-        "get": {
-          "tags": ["Transaction"],
-
-          "summary": "Gives user transactions list",
-
-          "parameters": [],
-
-          "security": [{ "Bearer": [] }],
-
-          "responses": {
-            "201": {
-              "description": "User got transactions list",
-
-              "content": {
-                "application/json": {
-                  "schema": {
-                    "$ref": "#/components/schemas/TransactionsByFilterResponse"
-                  }
-                }
-              }
-            }
-          },
-
-          "403": {
-            "description": "Transaction does not belong to user",
-
-            "content": {}
-          }
-        }
-      },
-
+    "/all": {
       "get": {
-        "tags": ["Categories"],
+        "tags": ["Transaction"],
 
-        "summary": "Gives user categories list",
+        "summary": "Gives user transactions list",
 
         "parameters": [],
 
+        "security": [{ "Bearer": [] }],
+
         "responses": {
           "201": {
-            "description": "",
+            "description": "User got transactions list",
 
             "content": {
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/getAllCategoriesResponse"
+                  "$ref": "#/components/schemas/TransactionsByFilterResponse"
                 }
               }
             }
           }
         },
 
-        "400": {
-          "description": "User request body format is invalid",
+        "403": {
+          "description": "Transaction does not belong to user",
 
           "content": {}
         }
       }
     },
 
-    "components": {
-      "schemas": {
-        "RegistrationRequest": {
-          "type": "object",
+    "get": {
+      "tags": ["Categories"],
 
-          "required": ["email", "password", "name"],
+      "summary": "Gives user categories list",
 
-          "properties": {
-            "email": {
-              "type": "string",
+      "parameters": [],
 
-              "description": "User's email",
+      "responses": {
+        "201": {
+          "description": "",
 
-              "format": "email",
-
-              "example": "username@mail.com"
-            },
-
-            "password": {
-              "type": "string",
-
-              "description": "User's password",
-
-              "example": "qwerty123"
-            },
-
-            "name": {
-              "type": "string",
-
-              "description": "User's name",
-
-              "example": "Mary"
-            }
-          }
-        },
-
-        "RegistrationResponse": {
-          "type": "object",
-
-          "properties": {
-            "email": {
-              "type": "string",
-
-              "description": "User's email",
-
-              "format": "email"
-            },
-
-            "userId": {
-              "type": "string",
-
-              "description": "User's id",
-
-              "example": "dfgdfg444ddg3"
-            }
-          }
-        },
-
-        "LoginRequest": {
-          "type": "object",
-
-          "required": ["email", "password"],
-
-          "properties": {
-            "email": {
-              "type": "string",
-
-              "description": "User's email",
-
-              "format": "email",
-
-              "example": "username@mail.com"
-            },
-
-            "password": {
-              "type": "string",
-
-              "description": "User's password",
-
-              "example": "qwerty123"
-            }
-          }
-        },
-
-        "LoginResponse": {
-          "type": "object",
-
-          "properties": {
-            "user": {
-              "type": "object",
-
-              "description": "User"
-            },
-
-            "token": {
-              "type": "string",
-
-              "description": "token",
-
-              "example": "dfgdfg444ddg3"
-            }
-          }
-        },
-
-        "LogoutRequest": {
-          "type": "string",
-
-          "required": "token",
-
-          "properties": {
-            "token": {
-              "type": "string",
-
-              "description": "token",
-
-              "example": "dfgdfg444ddg3"
-            }
-          }
-        },
-
-        "LogoutResponse": {
-          "type": "string",
-
-          "properties": {
-            "message": {
-              "type": "string",
-
-              "description": "Logout success"
-            }
-          }
-        },
-
-        "createTransactionsRequest": {
-          "type": "object",
-
-          "required": ["date", "type", "category", "comments", "amount", "id"],
-
-          "properties": {
-            "date": {
-              "type": "date",
-
-              "description": "Date's transaction",
-
-              "format": "date",
-
-              "example": "01.01.2021"
-            },
-
-            "type": {
-              "type": "boolean",
-
-              "description": "transaction with '+' or '-'"
-            },
-
-            "category": {
-              "type": "string",
-
-              "description": "categorys transaction",
-
-              "example": "Car"
-            },
-
-            "comments": {
-              "type": "string",
-
-              "description": "comments",
-
-              "example": "comments"
-            },
-
-            "amount": {
-              "type": "string",
-
-              "description": "amount",
-
-              "example": "amount"
-            },
-
-            "id": {
-              "type": "string",
-
-              "description": "ids transaction",
-
-              "example": "dfsder454df"
-            }
-          }
-        },
-
-        "createTransactionsResponse": {
-          "type": "object",
-
-          "properties": {
-            "date": {
-              "type": "date",
-
-              "description": "Date's transaction",
-
-              "format": "date",
-
-              "example": "01.01.2021"
-            },
-
-            "type": {
-              "type": "boolean",
-
-              "description": "transaction with '+' or '-'"
-            },
-
-            "category": {
-              "type": "string",
-
-              "description": "categorys transaction",
-
-              "example": "Car"
-            },
-
-            "comments": {
-              "type": "string",
-
-              "description": "comments",
-
-              "example": "comments"
-            },
-
-            "amount": {
-              "type": "string",
-
-              "description": "amount",
-
-              "example": "amount"
-            },
-
-            "id": {
-              "type": "string",
-
-              "description": "ids transaction",
-
-              "example": "dfsder454df"
-            },
-
-            "balanceAfter": {
-              "type": "number",
-
-              "description": "total balance transaction",
-
-              "example": "10000"
-            }
-          }
-        },
-
-        "TransactionsByFilterResponse": {
-          "type": "object",
-
-          "properties": {
-            "_id": {
-              "type": "string",
-
-              "description": "_id"
-            },
-
-            "date": {
-              "type": "string",
-
-              "description": "Date's transaction",
-
-              "format": "string",
-
-              "example": "2021-08-25T00:00:000Z"
-            },
-
-            "type": {
-              "type": "boolean",
-
-              "description": "true"
-            },
-
-            "category": {
-              "type": "string",
-
-              "description": "categorys transaction",
-
-              "example": "Car"
-            },
-
-            "comments": {
-              "type": "string",
-
-              "description": "comments",
-
-              "example": "comments"
-            },
-
-            "amount": {
-              "type": "string",
-
-              "description": "amount",
-
-              "example": "amount"
-            },
-
-            "year": {
-              "type": "number",
-
-              "description": "year",
-
-              "example": "2021"
-            },
-
-            "month": {
-              "type": "number",
-
-              "description": "month",
-
-              "example": "2021"
-            },
-
-            "balanceAfter": {
-              "type": "number",
-
-              "description": "balance",
-
-              "example": "10000"
-            },
-
-            "userId": {
-              "type": "string",
-
-              "description": "ids user",
-
-              "example": "dfsder454df"
-            }
-          }
-        },
-
-        "TransactionsResponse": {
-          "type": "object",
-
-          "properties": {
-            "date": {
-              "type": "string",
-
-              "description": "Date's transaction",
-
-              "format": "date",
-
-              "example": "01.01.2021"
-            },
-
-            "type": {
-              "type": "boolean",
-
-              "description": "transaction with '+' or '-'"
-            },
-
-            "category": {
-              "type": "string",
-
-              "description": "categorys transaction",
-
-              "example": "Car"
-            },
-
-            "comments": {
-              "type": "string",
-
-              "description": "comments",
-
-              "example": "comments"
-            },
-
-            "amount": {
-              "type": "string",
-
-              "description": "amount",
-
-              "example": "amount"
-            },
-
-            "id": {
-              "type": "string",
-
-              "description": "ids transaction",
-
-              "example": "dfsder454df"
-            },
-
-            "totalBalance": {
-              "type": "number",
-
-              "description": "total balance",
-
-              "example": "10000"
-            }
-          }
-        },
-
-        "getAllCategoriesResponse": {
-          "type": "object",
-
-          "properties": {
-            "date": {
-              "type": "date",
-
-              "description": "Date's category"
-            },
-
-            "category": {
-              "type": "string",
-
-              "description": "category`s transaction"
-            }
-          }
-        },
-
-        "currentResponse": {
-          "type": "object",
-
-          "properties": {
-            "id": {
-              "type": "string"
-            },
-
-            "name": {
-              "type": "string"
-            },
-            "email": {
-              "type": "string"
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/getAllCategoriesResponse"
+              }
             }
           }
         }
-      }
-    },
-    "securitySchemes": {
-      "Bearer": {
-        "type": "http",
+      },
 
-        "scheme": "bearer",
+      "400": {
+        "description": "User request body format is invalid",
 
-        "bearerFormat": "JWT"
+        "content": {}
       }
+    }
+  },
+
+  "components": {
+    "schemas": {
+      "RegistrationRequest": {
+        "type": "object",
+
+        "required": ["email", "password", "name"],
+
+        "properties": {
+          "email": {
+            "type": "string",
+
+            "description": "User's email",
+
+            "format": "email",
+
+            "example": "username@mail.com"
+          },
+
+          "password": {
+            "type": "string",
+
+            "description": "User's password",
+
+            "example": "qwerty123"
+          },
+
+          "name": {
+            "type": "string",
+
+            "description": "User's name",
+
+            "example": "Mary"
+          }
+        }
+      },
+
+      "RegistrationResponse": {
+        "type": "object",
+
+        "properties": {
+          "email": {
+            "type": "string",
+
+            "description": "User's email",
+
+            "format": "email"
+          },
+
+          "userId": {
+            "type": "string",
+
+            "description": "User's id",
+
+            "example": "dfgdfg444ddg3"
+          }
+        }
+      },
+
+      "LoginRequest": {
+        "type": "object",
+
+        "required": ["email", "password"],
+
+        "properties": {
+          "email": {
+            "type": "string",
+
+            "description": "User's email",
+
+            "format": "email",
+
+            "example": "username@mail.com"
+          },
+
+          "password": {
+            "type": "string",
+
+            "description": "User's password",
+
+            "example": "qwerty123"
+          }
+        }
+      },
+
+      "LoginResponse": {
+        "type": "object",
+
+        "properties": {
+          "user": {
+            "type": "object",
+
+            "description": "User"
+          },
+
+          "token": {
+            "type": "string",
+
+            "description": "token",
+
+            "example": "dfgdfg444ddg3"
+          }
+        }
+      },
+
+      "LogoutRequest": {
+        "type": "string",
+
+        "required": "token",
+
+        "properties": {
+          "token": {
+            "type": "string",
+
+            "description": "token",
+
+            "example": "dfgdfg444ddg3"
+          }
+        }
+      },
+
+      "LogoutResponse": {
+        "type": "string",
+
+        "properties": {
+          "message": {
+            "type": "string",
+
+            "description": "Logout success"
+          }
+        }
+      },
+
+      "createTransactionsRequest": {
+        "type": "object",
+
+        "required": ["date", "type", "category", "comments", "amount", "id"],
+
+        "properties": {
+          "date": {
+            "type": "string",
+
+            "description": "Date's transaction",
+
+            "format": "date",
+
+            "example": "01.01.2021"
+          },
+
+          "type": {
+            "type": "boolean",
+
+            "description": "transaction with '+' or '-'"
+          },
+
+          "category": {
+            "type": "string",
+
+            "description": "categorys transaction",
+
+            "example": "Car"
+          },
+
+          "comments": {
+            "type": "string",
+
+            "description": "comments",
+
+            "example": "comments"
+          },
+
+          "amount": {
+            "type": "string",
+
+            "description": "amount",
+
+            "example": "amount"
+          },
+
+          "id": {
+            "type": "string",
+
+            "description": "ids transaction",
+
+            "example": "dfsder454df"
+          }
+        }
+      },
+
+      "createTransactionsResponse": {
+        "type": "object",
+
+        "properties": {
+          "date": {
+            "type": "string",
+
+            "description": "Date's transaction",
+
+            "format": "date",
+
+            "example": "01.01.2021"
+          },
+
+          "type": {
+            "type": "boolean",
+
+            "description": "transaction with '+' or '-'"
+          },
+
+          "category": {
+            "type": "string",
+
+            "description": "categorys transaction",
+
+            "example": "Car"
+          },
+
+          "comments": {
+            "type": "string",
+
+            "description": "comments",
+
+            "example": "comments"
+          },
+
+          "amount": {
+            "type": "string",
+
+            "description": "amount",
+
+            "example": "amount"
+          },
+
+          "id": {
+            "type": "string",
+
+            "description": "ids transaction",
+
+            "example": "dfsder454df"
+          },
+
+          "balanceAfter": {
+            "type": "number",
+
+            "description": "total balance transaction",
+
+            "example": "10000"
+          }
+        }
+      },
+
+      "TransactionsByFilterResponse": {
+        "type": "object",
+
+        "properties": {
+          "_id": {
+            "type": "string",
+
+            "description": "_id"
+          },
+
+          "date": {
+            "type": "string",
+
+            "description": "Date's transaction",
+
+            "format": "string",
+
+            "example": "2021-08-25T00:00:000Z"
+          },
+
+          "type": {
+            "type": "boolean",
+
+            "description": "true"
+          },
+
+          "category": {
+            "type": "string",
+
+            "description": "category`s transaction",
+
+            "example": "Car"
+          },
+
+          "comments": {
+            "type": "string",
+
+            "description": "comments",
+
+            "example": "comments"
+          },
+
+          "amount": {
+            "type": "string",
+
+            "description": "amount",
+
+            "example": "amount"
+          },
+
+          "year": {
+            "type": "number",
+
+            "description": "year",
+
+            "example": "2021"
+          },
+
+          "month": {
+            "type": "number",
+
+            "description": "month",
+
+            "example": "2021"
+          },
+
+          "balanceAfter": {
+            "type": "number",
+
+            "description": "balance",
+
+            "example": "10000"
+          },
+
+          "userId": {
+            "type": "string",
+
+            "description": "ids user",
+
+            "example": "dfsder454df"
+          }
+        }
+      },
+
+      "TransactionsResponse": {
+        "type": "object",
+
+        "properties": {
+          "date": {
+            "type": "string",
+
+            "description": "Date's transaction",
+
+            "format": "date",
+
+            "example": "01.01.2021"
+          },
+
+          "type": {
+            "type": "boolean",
+
+            "description": "transaction with '+' or '-'"
+          },
+
+          "category": {
+            "type": "string",
+
+            "description": "categorys transaction",
+
+            "example": "Car"
+          },
+
+          "comments": {
+            "type": "string",
+
+            "description": "comments",
+
+            "example": "comments"
+          },
+
+          "amount": {
+            "type": "string",
+
+            "description": "amount",
+
+            "example": "amount"
+          },
+
+          "id": {
+            "type": "string",
+
+            "description": "ids transaction",
+
+            "example": "dfsder454df"
+          },
+
+          "totalBalance": {
+            "type": "number",
+
+            "description": "total balance",
+
+            "example": "10000"
+          }
+        }
+      },
+
+      "getAllCategoriesResponse": {
+        "type": "object",
+
+        "properties": {
+          "date": {
+            "type": "date",
+
+            "description": "Date's category"
+          },
+
+          "category": {
+            "type": "string",
+
+            "description": "category`s transaction"
+          }
+        }
+      },
+
+      "currentResponse": {
+        "type": "object",
+
+        "properties": {
+          "id": {
+            "type": "string"
+          },
+
+          "name": {
+            "type": "string"
+          },
+          "email": {
+            "type": "string"
+          }
+        }
+      }
+    }
+  },
+  "securitySchemes": {
+    "Bearer": {
+      "type": "http",
+
+      "scheme": "bearer",
+
+      "bearerFormat": "JWT"
     }
   }
 }
-

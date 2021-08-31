@@ -8,15 +8,15 @@ const TYPES = {
 };
 
 const CATEGORIES = {
-  MAIN: 'main',
-  FOOD: 'food',
-  CAR: 'car',
-  DEVELOPMENT: 'development',
-  KIDS: 'kids',
-  HOME: 'home',
-  EDUCATION: 'education',
-  REST: 'rest',
-  OTHER_EXPENSES: 'other expanses',
+  MAIN: 'Основной',
+  FOOD: 'Продукты',
+  CAR: 'Машина',
+  DEVELOPMENT: 'Забота о себе',
+  KIDS: 'Забота о детях',
+  HOME: 'Товары для дома',
+  EDUCATION: 'Образование',
+  REST: 'Досуг',
+  OTHER_EXPENSES: 'Другие расходы',
 };
 
 const transactionSchema = new Schema(
