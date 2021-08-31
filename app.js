@@ -1,7 +1,8 @@
 const express = require('express');
 const cors = require('cors');
 const logger = require('morgan');
-const swaggerDoc = require('./swaggerJSDoc');
+const swaggerUi = require('swagger-ui-express');
+const swaggerDocument = require('./swagger.json');
 require('dotenv').config();
 require('./configs/passport-config');
 
@@ -17,7 +18,7 @@ const formatsLogger = app.get('env') === 'development' ? 'dev' : 'short';
 app.use(logger(formatsLogger));
 app.use(cors());
 app.use(express.json());
-swaggerDoc(app);
+app.use('/api-docs', swaggerUi.serve, swaggerUi.setup(swaggerDocument));
 
 app.use('/api/transactions', transactionsRouter);
 app.use('/api/categories', categoriesRouter);
