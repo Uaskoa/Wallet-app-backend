@@ -17,6 +17,7 @@ const CATEGORIES = {
   EDUCATION: 'education',
   REST: 'rest',
   OTHER_EXPENSES: 'other expanses',
+  
 };
 
 const transactionSchema = new Schema(
@@ -48,7 +49,7 @@ const transactionSchema = new Schema(
     },
     category: {
       type: String,
-      enum: Object.values(CATEGORIES),
+      // enum: Object.values(CATEGORIES),
     },
     comment: {
       type: String,
