@@ -1,16 +1,12 @@
-const { object } = require('joi');
 const { Transaction } = require('../../models');
 const service = require('../../services/transaction');
 const TA = require('../../models/transaction/transaction');
 const { COST } = Transaction.TYPES;
 
-
-
 const createTransaction = async (req, res, next) => {
   const { date, type, category, comment, amount } = req.body;
   const year = date.substring(0, 4);
   const month = date.substring(5, 7);
-
 
   const userId = req.user._id;
   try {
@@ -58,7 +54,6 @@ const createTransaction = async (req, res, next) => {
     return res.json({
       data: { result },
     });
-
   } catch (error) {
     next(error);
   }
