@@ -1,6 +1,6 @@
-const { object } = require('joi');
-const { Transaction } = require('../../models');
+const { Transaction, User } = require('../../models');
 const service = require('../../services/transaction');
+const serviceUser = require('../../services/user')
 const TA = require('../../models/transaction/transaction');
 const { COST } = Transaction.TYPES;
 
@@ -42,6 +42,8 @@ const createTransaction = async (req, res, next) => {
       }
       balanceAfter = resultBalance(lastBalance[0].balanceAfter);
     }
+    
+    const qwe = await serviceUser.updateById(userId, { balance: balanceAfter })
 
     const result = await service.add({
       date,

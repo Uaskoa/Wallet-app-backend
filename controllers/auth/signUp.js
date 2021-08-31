@@ -34,6 +34,7 @@ const signUp = async (req, res, next) => {
     const userInfo = {
       name: user.name,
       email: user.email,
+      balance:user.balance
     };
     res.status(201).json({
       status: 'success',
