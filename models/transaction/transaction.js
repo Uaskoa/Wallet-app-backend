@@ -69,7 +69,6 @@ const transactionSchema = new Schema(
   },
 );
 
-
 transactionSchema.statics.TYPES = TYPES;
 transactionSchema.statics.CATEGORIES = CATEGORIES;
 
