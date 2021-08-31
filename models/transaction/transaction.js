@@ -69,18 +69,6 @@ const transactionSchema = new Schema(
   },
 );
 
-// transactionSchema.virtual('wallet', {
-//   ref: 'Wallet',
-//   localField: '_id',
-//   foreignField: 'transactions',
-//   justOne: true,
-// })
-// transactionSchema.virtual('wallet', {
-//   ref: 'Wallet',
-//   localField: 'id',
-//   foreignField: 'transactions',
-//   justOne: true,
-// })
 
 transactionSchema.statics.TYPES = TYPES;
 transactionSchema.statics.CATEGORIES = CATEGORIES;
