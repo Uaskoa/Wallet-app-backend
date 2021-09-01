@@ -1,5 +1,6 @@
 const { Transaction } = require('../../models');
 const service = require('../../services/transaction');
+const serviceUser = require('../../services/user');
 const TA = require('../../models/transaction/transaction');
 const { COST } = Transaction.TYPES;
 
@@ -26,19 +27,19 @@ const createTransaction = async (req, res, next) => {
     if (lastBalance[0] === undefined) {
       if (type === COST) {
         return res.json({
-          messege: 'Баланс не может быть отрицательным',
+          message: 'Баланс не может быть отрицательным',
         });
       }
       balanceAfter = resultBalance(0);
     } else {
       if (lastBalance[0].balanceAfter < amountNumber && type === COST) {
         return res.json({
-          messege: 'Баланс не может быть отрицательным',
+          message: 'Баланс не может быть отрицательным',
         });
       }
       balanceAfter = resultBalance(lastBalance[0].balanceAfter);
     }
-
+    await serviceUser.updateById(userId, { balance: balanceAfter });
     const result = await service.add({
       date,
       type,
