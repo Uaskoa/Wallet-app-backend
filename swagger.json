@@ -19,7 +19,7 @@
 
   "produces": ["application/json"],
 
-  "servers": [{ "url": "http://localhost:3001" }],
+  "servers": [{ "url": "http://localhost:3001"  }, {"url": "https://wallet-app-backend.herokuapp.com"}],
 
   "tags": [
     {
