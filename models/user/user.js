@@ -20,10 +20,10 @@ const userSchema = Schema({
     default: null,
   },
   balance: {
-      type: Number,
-      required: true,
-      default:0
-    }
+    type: Number,
+    required: true,
+    default: 0,
+  },
 });
 
 userSchema.methods.setPassword = function (password) {

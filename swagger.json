@@ -19,7 +19,10 @@
 
   "produces": ["application/json"],
 
-  "servers": [{ "url": "http://localhost:3001/"  }, {"url": "https://wallet-app-backend.herokuapp.com"}],
+  "servers": [
+    { "url": "http://localhost:3001/" },
+    { "url": "https://wallet-app-backend.herokuapp.com" }
+  ],
 
   "tags": [
     {
@@ -266,8 +269,7 @@
           "content": {}
         }
       },
-    
-    
+
       "get": {
         "tags": ["Transaction"],
 
@@ -296,7 +298,8 @@
             "content": {}
           }
         }
-      }},
+      }
+    },
 
     "/api/transactions/all": {
       "get": {
