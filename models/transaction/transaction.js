@@ -10,6 +10,7 @@ const TYPES = {
 const CATEGORIES = {
   MAIN: 'main',
   MAIN_INCOME: 'mainIncome',
+  FOOD: 'food',
   CAR: 'car',
   DEVELOPMENT: 'development',
   KIDS: 'kids',
