@@ -19,7 +19,7 @@
 
   "produces": ["application/json"],
 
-  "servers": [{ "url": "http://localhost:3001"  }, {"url": "https://wallet-app-backend.herokuapp.com"}],
+  "servers": [{ "url": "http://localhost:3001/"  }, {"url": "https://wallet-app-backend.herokuapp.com"}],
 
   "tags": [
     {
@@ -42,7 +42,7 @@
   ],
 
   "paths": {
-    "/signup": {
+    "/api/users/signup": {
       "post": {
         "tags": ["Auth"],
 
@@ -94,7 +94,7 @@
       }
     },
 
-    "/login": {
+    "/api/users/login": {
       "post": {
         "tags": ["Auth"],
 
@@ -140,7 +140,7 @@
       }
     },
 
-    "/logout": {
+    "/api/users/logout": {
       "post": {
         "tags": ["Auth"],
 
@@ -186,7 +186,7 @@
       }
     },
 
-    "/current": {
+    "/api/users/current": {
       "get": {
         "tags": ["Auth"],
 
@@ -216,7 +216,7 @@
       }
     },
 
-    "/": {
+    "/api/transactions": {
       "post": {
         "tags": ["Transaction"],
 
@@ -298,7 +298,7 @@
         }
       }},
 
-    "/all": {
+    "/api/transactions/all": {
       "get": {
         "tags": ["Transaction"],
 
